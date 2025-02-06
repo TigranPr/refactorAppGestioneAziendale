@@ -14,16 +14,16 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="commento-service" options="-parameters" />
-      <module name="comune-service" options="-parameters" />
-      <module name="comunicazioneAziendale-service" options="-parameters" />
+      <module name="comune-service" options="" />
+      <module name="comunicazioneAziendale-service" options="" />
       <module name="config-server" options="-parameters" />
-      <module name="dipartimento-service" options="-parameters" />
+      <module name="dipartimento-service" options="" />
       <module name="discovery" options="-parameters" />
-      <module name="like-service" options="-parameters" />
-      <module name="news-service" options="-parameters" />
-      <module name="posizioneLavorativa-service" options="-parameters" />
-      <module name="timbratura-service" options="-parameters" />
-      <module name="user-service" options="-parameters" />
+      <module name="like-service" options="" />
+      <module name="news-service" options="" />
+      <module name="posizioneLavorativa-service" options="" />
+      <module name="timbratura-service" options="" />
+      <module name="user-service" options="" />
     </option>
   </component>
 </project>
