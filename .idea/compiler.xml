@@ -9,23 +9,6 @@
         <module name="config-server" />
         <module name="discovery" />
       </profile>
-      <profile name="Annotation profile for comune-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-        </processorPath>
-        <module name="news-service" />
-        <module name="commento-service" />
-        <module name="like-service" />
-        <module name="comune-service" />
-        <module name="timbratura-service" />
-        <module name="comunicazioneAziendale-service" />
-        <module name="posizioneLavorativa-service" />
-        <module name="dipartimento-service" />
-        <module name="user-service" />
-      </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
