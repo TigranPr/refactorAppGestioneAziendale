@@ -9,13 +9,14 @@
         <module name="config-server" />
         <module name="discovery" />
       </profile>
-      <profile name="Annotation profile for gestionePersonale" enabled="true">
+      <profile name="Annotation profile for gestioneComunity" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
+        <module name="gestioneComunity" />
         <module name="gestionePersonale" />
       </profile>
     </annotationProcessing>
@@ -28,6 +29,7 @@
       <module name="config-server" options="-parameters" />
       <module name="dipartimento-service" options="" />
       <module name="discovery" options="-parameters" />
+      <module name="gestioneComunity" options="-parameters" />
       <module name="gestionePersonale" options="-parameters" />
       <module name="like-service" options="" />
       <module name="news-service" options="" />
