@@ -29,7 +29,6 @@
         <option value="$PROJECT_DIR$/services/news-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/posizioneLavorativa-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/timbratura-service/pom.xml" />
-        <option value="$PROJECT_DIR$/services/user-service/pom.xml" />
       </set>
     </option>
   </component>

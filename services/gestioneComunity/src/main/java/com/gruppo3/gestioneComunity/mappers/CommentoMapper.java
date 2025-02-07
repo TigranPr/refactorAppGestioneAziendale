@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentoMapper {
     @Autowired
-    private DipendenteService dipendenteService;
+    private Long dipendenteService;
     @Autowired
     private NewsService newsService;
 
