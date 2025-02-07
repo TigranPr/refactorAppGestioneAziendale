@@ -1,5 +1,6 @@
 package com.gruppo3.gestioneComunity.mappers;
 
+import com.gruppo3.gestioneComunity.dto.requests.CreateCommentoRequest;
 import com.gruppo3.gestioneComunity.entity.Commento;
 import com.gruppo3.gestioneComunity.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
