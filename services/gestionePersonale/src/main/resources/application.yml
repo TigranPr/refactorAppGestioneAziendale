@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gestione-personale
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/gestione_personale
+    username: tiger
+    password: mypassword
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  server:
+    port: 5433
