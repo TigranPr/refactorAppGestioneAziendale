@@ -1,6 +1,5 @@
 package com.gruppo3.gestioneComunity.entity;
 
-import com.gruppo3.gestioneComunity.entity.News;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
