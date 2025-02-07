@@ -4,6 +4,8 @@ import com.gruppo3.gestioneComunity.dto.requests.CreateCommentoRequest;
 import com.gruppo3.gestioneComunity.dto.requests.UpdateCommentoRequest;
 import com.gruppo3.gestioneComunity.dto.response.EntityIdResponse;
 import com.gruppo3.gestioneComunity.entity.Commento;
+import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
+import com.gruppo3.gestioneComunity.exceptions.MyIllegalException;
 import com.gruppo3.gestioneComunity.mappers.CommentoMapper;
 import com.gruppo3.gestioneComunity.repository.CommentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
