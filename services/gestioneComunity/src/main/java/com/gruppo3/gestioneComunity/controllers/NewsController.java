@@ -3,6 +3,7 @@ package com.gruppo3.gestioneComunity.controllers;
 import com.gruppo3.gestioneComunity.dto.requests.CreateNewsRequest;
 import com.gruppo3.gestioneComunity.dto.response.NewsResponse;
 import com.gruppo3.gestioneComunity.entity.News;
+import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
 import com.gruppo3.gestioneComunity.services.NewsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

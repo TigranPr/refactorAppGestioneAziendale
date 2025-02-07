@@ -4,6 +4,7 @@ import com.gruppo3.gestioneComunity.dto.requests.LikeRequest;
 import com.gruppo3.gestioneComunity.dto.response.LikeResponse;
 import com.gruppo3.gestioneComunity.entity.Like;
 import com.gruppo3.gestioneComunity.entity.News;
+import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
 import com.gruppo3.gestioneComunity.mappers.LikeMapper;
 import com.gruppo3.gestioneComunity.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
