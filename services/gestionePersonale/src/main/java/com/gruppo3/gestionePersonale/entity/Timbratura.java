@@ -26,5 +26,5 @@ public class Timbratura {
     private LocalDateTime finePausa;
     @ManyToOne
     @JoinColumn(name = "id_dipendente", referencedColumnName = "id")
-    private Long dipendente;
+    private Long dipendenteId;
 }
