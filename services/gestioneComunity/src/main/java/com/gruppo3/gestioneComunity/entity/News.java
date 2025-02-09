@@ -1,11 +1,21 @@
 package com.gruppo3.gestioneComunity.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "news")
+@EntityListeners(AuditingEntityListener.class)
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
