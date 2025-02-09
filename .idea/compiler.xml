@@ -19,6 +19,7 @@
         </processorPath>
         <module name="gestionePersonale" />
         <module name="gestioneComunity" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,7 +31,6 @@
       <module name="news-service" target="21" />
       <module name="posizioneLavorativa-service" target="21" />
       <module name="timbratura-service" target="21" />
-      <module name="user-service" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
