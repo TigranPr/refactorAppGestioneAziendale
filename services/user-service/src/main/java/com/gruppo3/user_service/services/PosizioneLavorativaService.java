@@ -33,11 +33,11 @@ public class PosizioneLavorativaService {
         return new EntityIdResponse(posizioneLavorativa.getId());
     }
 
-    public EntityIdResponse updatePosizione(Long id, UpdatePosizioneLavorativaRequest response){
+    public EntityIdResponse updatePosizione(Long id, UpdatePosizioneLavorativaRequest request){
         PosizioneLavorativa posizioneLavorativa = posizioneLavorativaRepository.findById(id)
                 .orElseThrow(()-> new MyEntityNotFoundException("la posizione lavorativa con id d% non esiste"));
-        if(response.nome() != null) posizioneLavorativa.setNome(response.nome());
-        if(response.descrizione() != null) posizioneLavorativa.setDescrizione(response.descrizione());
+        if(request.nome() != null) posizioneLavorativa.setNome(request.nome());
+        if(request.descrizione() != null) posizioneLavorativa.setDescrizione(request.descrizione());
         return new EntityIdResponse(posizioneLavorativaRepository.save(posizioneLavorativa).getId());
     }
 
