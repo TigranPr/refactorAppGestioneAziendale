@@ -22,7 +22,7 @@ public class CommentoService {
     @Autowired
     private NewsService newsService;
     @Autowired
-    private Long dipendenteService;
+    private UtenteClient utenteClient;
 
     public Commento getById(Long id) {
         return commentoRepository.findById(id)
@@ -47,7 +47,7 @@ public class CommentoService {
         Commento commento = getById(id);
         if (request.testo() != null) commento.setTesto(request.testo());
         if (request.news() != null) commento.setNews(newsService.getById(request.news().id()));
-        if (request.dipendente() != null) commento.setDipendente(dipendenteService.getById(request.dipendente().id()));
+        if (request.dipendente() != null) commento.setIdDipendente(utenteClient.getUtenteById(request.dipendente().id()));
         if (request.testo() == null && request.news() == null && request.dipendente() == null)
             throw new MyIllegalException("Per fare un update devi almeno inserire un campo");
         return new EntityIdResponse(commentoRepository.save(commento).getId());

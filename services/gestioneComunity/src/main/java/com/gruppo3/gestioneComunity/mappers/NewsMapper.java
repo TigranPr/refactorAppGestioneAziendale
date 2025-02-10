@@ -3,6 +3,7 @@ package com.gruppo3.gestioneComunity.mappers;
 import com.gruppo3.gestioneComunity.dto.requests.CreateNewsRequest;
 import com.gruppo3.gestioneComunity.entity.News;
 import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
+import com.gruppo3.gestioneComunity.services.UtenteClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class NewsMapper {
 
     @Autowired
-    private Long dipendenteRepository;
+    private UtenteClient dipendenteRepository;
 
     public News fromCreateNewsRequest(CreateNewsRequest request) throws MyEntityNotFoundException {
         Long dipendente = dipendenteRepository

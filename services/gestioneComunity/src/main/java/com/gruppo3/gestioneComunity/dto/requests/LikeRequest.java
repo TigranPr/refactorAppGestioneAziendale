@@ -6,6 +6,6 @@ public record LikeRequest(
         @NotNull(message = "NewsId non può essere blank o null")
         Long NewsId,
         @NotNull(message = "DipendenteId non può essere blank o null")
-        Long DipendenteId
+        Long IdDipendente
 ) {
 }
