@@ -20,7 +20,5 @@ public class ComunicazioneAziendale {
     private Long id;
     private String testo;
     private String allegato_url;
-    @ManyToOne
-    @JoinColumn(name = "id_publisher", referencedColumnName = "id")
     private Long dipendenteId;
 }
