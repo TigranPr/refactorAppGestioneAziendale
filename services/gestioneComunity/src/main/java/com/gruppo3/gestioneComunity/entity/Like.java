@@ -18,8 +18,6 @@ public class Like {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_dipendente", nullable = false)
     private Long idDipendente;
 
     @ManyToOne
