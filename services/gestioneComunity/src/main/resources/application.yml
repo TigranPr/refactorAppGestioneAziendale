@@ -5,7 +5,7 @@ spring:
     import: optional:configserver:http_//localhost:8888
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/gestione-comunity
+    url: jdbc:postgresql://localhost:5433/gestione-comunity
     username: tiger
     password: mypassword
   jpa:

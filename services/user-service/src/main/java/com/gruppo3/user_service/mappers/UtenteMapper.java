@@ -7,7 +7,9 @@ import com.gruppo3.user_service.exception.MyIllegalException;
 import com.gruppo3.user_service.services.ComuneService;
 import com.gruppo3.user_service.services.PosizioneLavorativaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UtenteMapper {
     @Autowired
     private ComuneService comuneService;
