@@ -10,7 +10,7 @@
         <module name="config-server" />
         <module name="discovery" />
       </profile>
-      <profile name="Annotation profile for gestionePersonale" enabled="true">
+      <profile name="Annotation profile for user-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,8 +18,20 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="gestionePersonale" />
+        <module name="gestioneComunity" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="commento-service" target="21" />
+      <module name="comune-service" target="21" />
+      <module name="comunicazioneAziendale-service" target="21" />
+      <module name="dipartimento-service" target="21" />
+      <module name="like-service" target="21" />
+      <module name="news-service" target="21" />
+      <module name="posizioneLavorativa-service" target="21" />
+      <module name="timbratura-service" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -29,12 +41,13 @@
       <module name="config-server" options="-parameters" />
       <module name="dipartimento-service" options="" />
       <module name="discovery" options="-parameters" />
+      <module name="gestioneComunity" options="-parameters" />
       <module name="gestionePersonale" options="-parameters" />
       <module name="like-service" options="" />
       <module name="news-service" options="" />
       <module name="posizioneLavorativa-service" options="" />
       <module name="timbratura-service" options="" />
-      <module name="user-service" options="" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>

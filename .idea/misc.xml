@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/services/comunicazioneAziendale-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/comune-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/gestionePersonale/pom.xml" />
+        <option value="$PROJECT_DIR$/services/gestioneComunity/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -28,7 +29,6 @@
         <option value="$PROJECT_DIR$/services/news-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/posizioneLavorativa-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/timbratura-service/pom.xml" />
-        <option value="$PROJECT_DIR$/services/user-service/pom.xml" />
       </set>
     </option>
   </component>
