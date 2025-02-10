@@ -1,6 +1,7 @@
 package com.gruppo3.gestionePersonale.services;
 
 import com.gruppo3.gestionePersonale.entity.Timbratura;
+import com.gruppo3.gestionePersonale.exceptions.MyEntityNotFoundException;
 import com.gruppo3.gestionePersonale.repository.TimbraturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
