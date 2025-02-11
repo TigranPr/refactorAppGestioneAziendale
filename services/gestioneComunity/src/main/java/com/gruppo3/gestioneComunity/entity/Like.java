@@ -23,4 +23,5 @@ public class Like {
     @ManyToOne
     @JoinColumn(name = "id_news", nullable = false)
     private News news;
+
 }
