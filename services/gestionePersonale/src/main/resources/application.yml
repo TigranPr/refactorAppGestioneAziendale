@@ -15,4 +15,4 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
   server:
-    port: 5433
+    port: 8052

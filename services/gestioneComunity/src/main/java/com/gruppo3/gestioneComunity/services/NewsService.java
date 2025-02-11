@@ -1,6 +1,7 @@
 package com.gruppo3.gestioneComunity.services;
 
 import com.gruppo3.gestioneComunity.dto.requests.CreateNewsRequest;
+import com.gruppo3.gestioneComunity.dto.response.EntityIdResponse;
 import com.gruppo3.gestioneComunity.dto.response.NewsResponse;
 import com.gruppo3.gestioneComunity.entity.News;
 import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
