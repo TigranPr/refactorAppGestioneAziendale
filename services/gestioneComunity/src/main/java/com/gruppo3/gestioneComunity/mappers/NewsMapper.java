@@ -11,20 +11,18 @@ import org.springframework.stereotype.Service;
 public class NewsMapper {
 
     @Autowired
-    private UtenteClient dipendenteRepository;
+    private UtenteClient utenteClient;
 
-    public News fromCreateNewsRequest(CreateNewsRequest request) throws MyEntityNotFoundException {
-        Long dipendente = dipendenteRepository
-                .findById(request.idPublisher())
-                .orElseThrow(() -> new IllegalArgumentException("Dipartimento con ID : " + request.idPublisher() +
-                        " non trovato"));
+    public News fromCreateNewsRequest(CreateNewsRequest request)
+            throws MyEntityNotFoundException {
+        Long utente = utenteClient.getUtenteById(request.idPublisher()).id();
 
         return News.builder()
                 .titolo(request.titolo())
                 .testo(request.testo())
                 .image_url(request.image_url())
                 .allegato_url(request.allegato())
-                .idPublisher(dipendente)
+                .idPublisher(utente)
                 .build();
     }
 }
