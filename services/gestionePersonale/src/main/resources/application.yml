@@ -14,5 +14,10 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-  server:
-    port: 8052
+    
+server:
+  port: 8052
+
+application:
+    config:
+      user-url: http:///localhost:5433/user_service
