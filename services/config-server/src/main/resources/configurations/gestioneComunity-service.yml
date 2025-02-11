@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/gestione-comunity
+    url: jdbc:postgresql://localhost:5433/gestione_comunity
     username: tiger
     password: mypassword
   jpa:

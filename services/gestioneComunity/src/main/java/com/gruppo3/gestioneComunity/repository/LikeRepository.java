@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LikeRepository extends JpaRepository<Like, Long> {
     //verifico se un dipendente ha già messo like a una news
-    boolean existsByNewsAndDipendente(News news, Long dipendente);
+    boolean existsByNewsAndIdDipendente(News news, Long dipendente);
 
 }

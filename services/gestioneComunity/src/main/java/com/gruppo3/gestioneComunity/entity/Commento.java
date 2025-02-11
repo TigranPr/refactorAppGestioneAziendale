@@ -1,6 +1,5 @@
 package com.gruppo3.gestioneComunity.entity;
 
-import com.gruppo3.gestioneComunity.services.UtenteClient;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -28,8 +27,6 @@ public class Commento {
     @ManyToOne
     @JoinColumn(name = "id_news", referencedColumnName = "id")
     private News news;
-    @ManyToOne
-    @JoinColumn(name = "id_dipendente", referencedColumnName = "id")
     private Long idDipendente;
     @CreatedDate
     @Column(name = "created_at")

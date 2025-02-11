@@ -29,7 +29,7 @@ public class LikeService {
         var dipendente = utenteClient.getUtenteById(request.IdDipendente());
 
         // Verifico se ci sta il duplicato del like
-        if (likeRepository.existsByNewsAndDipendente(news, utenteClient.getUtenteById(request.IdDipendente()).id())) {
+        if (likeRepository.existsByNewsAndIdDipendente(news, utenteClient.getUtenteById(request.IdDipendente()).id())) {
             throw new IllegalArgumentException(
                     "Il dipendente con ID " + dipendente + " ha già messo like alla news con ID " + news.getId()
             );
