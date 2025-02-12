@@ -10,16 +10,17 @@
         <module name="config-server" />
         <module name="discovery" />
       </profile>
-      <profile name="Annotation profile for gestioneComunity" enabled="true">
+      <profile name="Annotation profile for notifications" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
+        <module name="user-service" />
         <module name="gestioneComunity" />
         <module name="gestionePersonale" />
-        <module name="user-service" />
+        <module name="notifications" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -45,6 +46,7 @@
       <module name="gestionePersonale" options="-parameters" />
       <module name="like-service" options="" />
       <module name="news-service" options="" />
+      <module name="notifications" options="-parameters" />
       <module name="posizioneLavorativa-service" options="" />
       <module name="timbratura-service" options="" />
       <module name="user-service" options="-parameters" />

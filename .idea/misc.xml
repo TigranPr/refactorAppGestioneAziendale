@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/services/comune-service/pom.xml" />
         <option value="$PROJECT_DIR$/services/gestionePersonale/pom.xml" />
         <option value="$PROJECT_DIR$/services/gestioneComunity/pom.xml" />
+        <option value="$PROJECT_DIR$/services/notifications/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
