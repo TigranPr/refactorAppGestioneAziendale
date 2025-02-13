@@ -14,5 +14,5 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-  server:
-    port: 8070
+server:
+  port: 8070
