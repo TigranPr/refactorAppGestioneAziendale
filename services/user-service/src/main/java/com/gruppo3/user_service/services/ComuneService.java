@@ -20,7 +20,7 @@ public class ComuneService {
 
     public Comune getById(Long id){
         return comuneRepository.findById(id)
-                .orElseThrow(()-> new MyEntityNotFoundException("Il ccomune con id %d non esiste"));
+                .orElseThrow(()-> new MyEntityNotFoundException("Il comune con id %d non esiste"));
     }
     public List<Comune> getAll(){
         return comuneRepository.findAll();

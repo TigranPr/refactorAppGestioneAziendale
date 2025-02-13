@@ -18,7 +18,6 @@ public class Like {
     private Long id;
     @Column(name = "id_dipendente")
     private Long idDipendente;
-
     @ManyToOne
     @JoinColumn(name = "id_news", nullable = false)
     private News news;

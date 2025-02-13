@@ -10,5 +10,18 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-  server:
-    port: 8052
+  kafka:
+    producer:
+      bootstrap-server: localhost:9092
+      group-id: notification-group
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: gestionePersonale:com.gruppo3.gestionePersonale.kafka.ComunicazioneConfirmation
+
+server:
+  port: 8052
+
+application:
+  config:
+    user-url: http:///localhost:5433/user_service

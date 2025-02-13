@@ -13,7 +13,7 @@ public class NotificationConsumer {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @KafkaListener(topics = "news-topic")
+    @KafkaListener(topics = "news-topic", groupId = "notification-group")
     public void consumeNewsNotification (NewsConfirmation newsConfirmation) {
         notificationRepository.save(
                 Notification.builder()
@@ -23,9 +23,10 @@ public class NotificationConsumer {
                         .build()
         );
         /*TODO inviare la email di conferma*/
+        System.out.println("comunica?!");
     }
 
-    @KafkaListener(topics = "comunicazione-topic")
+    @KafkaListener(topics = "comunicazione-topic", groupId = "notification-group")
     public void consumeComunicazioneNotification (ComunicazioneConfirmation comunicazioneConfirmation) {
         notificationRepository.save(
                 Notification.builder()
@@ -35,6 +36,7 @@ public class NotificationConsumer {
                         .build()
         );
         /*TODO inviare la email di conferma*/
+        System.out.println("comunica?!");
     }
 }
 
