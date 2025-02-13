@@ -24,7 +24,7 @@ public class News {
     private String titolo;
     @Column(nullable = false)
     private String testo;
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String image_url;
     @Column(nullable = false)
     private String allegato_url;
@@ -43,3 +43,4 @@ public class News {
     @Column(name = "last_modified_by")
     private Long lastModifiedBy;
 }
+
