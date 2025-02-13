@@ -21,7 +21,9 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.data.mapping: gestioneComunity:com.gruppo3.notifications.kafka.orders.OrderConfirmation #da refactorare dopo.
+        spring.json.data.mapping:
+          gestioneComunity:com.gruppo3.kafka.NewsConfirmation,
+          gestionePersonale:com.gruppo3.kafka.ComunicazioneConfirmation
 
   mail:
     host: localhost
