@@ -1,8 +1,4 @@
 spring:
-  application:
-    name: gestioneCurriculum
-  config:
-    import: optional:configserver:http://localhost:8888
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5433/gestionecurriculum
@@ -15,9 +11,9 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
-server:
-  port: 8060
+  server:
+    port: 8060
 
-application:
-  config:
-    user-url: http://localhost:5433/user_service
+  application:
+    config:
+      user-url: http:///localhost:5433/user_service

@@ -1,6 +1,5 @@
 package com.gruppo3.gestioneCurriculum.service;
 
-import com.gruppo3.gestioneCurriculum.dto.EntityRespone;
 import com.gruppo3.gestioneCurriculum.dto.UtenteResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
