@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -25,10 +24,13 @@ import java.util.List;
 
 @Service
 public class CurriculumService {
+
     @Autowired
     private CurriculumRepository curriculumRepository;
+
     @Autowired
     private UtenteClient utenteClient;
+
     private String path = "refactorAppGestioneAziendale/assest";
 
     public Curriculum getById(Long id){
@@ -105,5 +107,4 @@ public class CurriculumService {
         }
         return tipoFilePermessi.contains(tipoFileCaricato);
     }
-
 }

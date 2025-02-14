@@ -41,7 +41,7 @@ public class CurriculumController {
                 new GenericResponse("Commento con id " + id + " eliminato correttamente"), HttpStatus.OK);
     }
 
-    @GetMapping("/donwload/{idUtente}")
+    @GetMapping("/download/{idUtente}")
     public ResponseEntity<Resource> download(@PathVariable Long idUtente) {
         return curriculumService.download(idUtente);
     }

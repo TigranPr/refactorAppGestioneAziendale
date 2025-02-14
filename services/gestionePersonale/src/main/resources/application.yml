@@ -28,4 +28,4 @@ server:
 
 application:
     config:
-      user-url: http:///localhost:5433/user_service
+      user-url: http://localhost:5433/user_service
