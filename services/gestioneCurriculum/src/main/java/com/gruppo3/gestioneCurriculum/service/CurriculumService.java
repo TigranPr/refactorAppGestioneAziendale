@@ -31,10 +31,9 @@ public class CurriculumService {
     @Autowired
     private UtenteClient utenteClient;
 
-    private String path = "refactorAppGestioneAziendale/assest";
-
     public Curriculum getById(Long id){
-        return curriculumRepository.findById(id).orElseThrow(()-> new MyEntityNotFoundException("Curriculum con id " + id + " non trovato"));
+        return curriculumRepository.findById(id)
+                .orElseThrow(()-> new MyEntityNotFoundException("Curriculum con id " + id + " non trovato"));
     }
 
     public List<Curriculum> all(){
@@ -42,14 +41,16 @@ public class CurriculumService {
     }
 
    public Curriculum getByUtenteId(Long idUtente) {
-        return curriculumRepository.findByIdUtente(idUtente).orElseThrow(()-> new MyEntityNotFoundException("Utente con id: " + idUtente + " non trovato!"));
+        return curriculumRepository.findByIdUtente(idUtente)
+                .orElseThrow(()-> new MyEntityNotFoundException("Utente con id: " + idUtente + " non trovato!"));
    }
 
     public EntityRespone upload(Long idUtente, MultipartFile file){
         var utente = utenteClient.getUtenteById(idUtente);
-        if (!valideFile(file)) throw new MyIllegalException("Tipo di file non valido!");
+        if (file == null || file.isEmpty() || !valideFile(file)) throw new MyIllegalException("Tipo di file non valido o file vuoto!");
         Curriculum curriculum;
         try {
+            String path = "refactorAppGestioneAziendale/assest";
             Path directoryPath = Paths.get(path);
             if (!Files.exists(directoryPath)) {
                 Files.createDirectories(directoryPath);
@@ -77,10 +78,9 @@ public class CurriculumService {
 
     public ResponseEntity<Resource> download(Long idUtente) {
         Curriculum curriculum = getById(idUtente);
+        if (curriculum == null) throw new MyEntityNotFoundException("Curriculum con ID " + idUtente + " non trovato.");
         Path filePath = Paths.get(curriculum.getPercorsoFile());
-        if (!Files.exists(filePath)) {
-            throw new MyEntityNotFoundException("File non trovato nel server");
-        }
+        if (!Files.exists(filePath)) throw new MyEntityNotFoundException("File non trovato nel server");
         try {
             Resource resource = new UrlResource(filePath.toUri());
             return ResponseEntity.ok()
