@@ -1,5 +1,6 @@
 package com.gruppo3.gestioneComunity.entity;
 
+import com.gruppo3.gestioneComunity.services.UtenteClient;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;

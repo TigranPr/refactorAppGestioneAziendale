@@ -2,10 +2,10 @@ spring:
   application:
     name: user-service
   config:
-    import: optional:configserver:http_//localhost:8888
+    import: optional:configserver:http://localhost:8888
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/user-service
+    url: jdbc:postgresql://localhost:5433/user_service
     username: tiger
     password: mypassword
   jpa:
@@ -15,4 +15,4 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
   server:
-    port: 8081
+    port: 8070
