@@ -1,5 +1,6 @@
 package com.gruppo3.apiGateway;
 
+import com.netflix.discovery.EurekaNamespace;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
