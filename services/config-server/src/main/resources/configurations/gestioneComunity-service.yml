@@ -1,14 +1,29 @@
 spring:
+  application:
+    name: gestione-comunity
+  config:
+    import: optional:configserver:http://localhost:8888
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/gestione-comunity
+    url: jdbc:postgresql://localhost:5433/gestione_comunity
     username: tiger
     password: mypassword
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-  server:
-    port: 8002
+  kafka:
+    producer:
+      bootstrap-server: localhost:9092
+      group-id: notification-group
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: gestioneComunity:com.gruppo3.gestioneComunity.kafka.NewsConfirmation
+server:
+  port: 8002
+application:
+  config:
+    user-url: http:///localhost:5433/user_service02

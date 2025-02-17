@@ -1,9 +1,9 @@
 package com.gruppo3.gestioneComunity.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.annotation.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -24,12 +24,11 @@ public class News {
     private String titolo;
     @Column(nullable = false)
     private String testo;
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String image_url;
     @Column(nullable = false)
     private String allegato_url;
-    @ManyToOne
-    @JoinColumn(name = "id_publisher", referencedColumnName = "id")
+    @Column(name = "id_publish")
     private Long idPublisher;
     @CreatedDate
     @Column(name = "created_at")
@@ -44,3 +43,4 @@ public class News {
     @Column(name = "last_modified_by")
     private Long lastModifiedBy;
 }
+

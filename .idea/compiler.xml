@@ -7,19 +7,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="apiGateway" />
         <module name="config-server" />
         <module name="discovery" />
       </profile>
-      <profile name="Annotation profile for gestioneComunity" enabled="true">
+      <profile name="Annotation profile for gestioneCurriculum" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
-        <module name="gestioneComunity" />
-        <module name="gestionePersonale" />
         <module name="user-service" />
+        <module name="gestionePersonale" />
+        <module name="gestioneComunity" />
+        <module name="gestioneCurriculum" />
+        <module name="notifications" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -35,6 +38,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="apiGateway" options="-parameters" />
       <module name="commento-service" options="-parameters" />
       <module name="comune-service" options="" />
       <module name="comunicazioneAziendale-service" options="" />
@@ -42,9 +46,11 @@
       <module name="dipartimento-service" options="" />
       <module name="discovery" options="-parameters" />
       <module name="gestioneComunity" options="-parameters" />
+      <module name="gestioneCurriculum" options="-parameters" />
       <module name="gestionePersonale" options="-parameters" />
       <module name="like-service" options="" />
       <module name="news-service" options="" />
+      <module name="notifications" options="-parameters" />
       <module name="posizioneLavorativa-service" options="" />
       <module name="timbratura-service" options="" />
       <module name="user-service" options="-parameters" />

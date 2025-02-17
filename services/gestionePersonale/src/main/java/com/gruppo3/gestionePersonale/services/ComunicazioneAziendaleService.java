@@ -6,6 +6,8 @@ import com.gruppo3.gestionePersonale.dto.UpdateComunicazioneAziendaleRequest;
 import com.gruppo3.gestionePersonale.entity.ComunicazioneAziendale;
 import com.gruppo3.gestionePersonale.exceptions.MyEntityNotFoundException;
 import com.gruppo3.gestionePersonale.exceptions.MyIllegalException;
+import com.gruppo3.gestionePersonale.kafka.ComunicazioneConfirmation;
+import com.gruppo3.gestionePersonale.kafka.ComunicazioneProducer;
 import com.gruppo3.gestionePersonale.mappers.ComunicazioneAziendaleMapper;
 import com.gruppo3.gestionePersonale.repository.ComunicazioneAziendaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class ComunicazioneAziendaleService {
     private ComunicazioneAziendaleRepository comunicazioneAziendaleRepository;
     @Autowired
     private ComunicazioneAziendaleMapper comunicazioneAziendaleMapper;
+    @Autowired
+    private ComunicazioneProducer comunicazioneProducer;
 
     public ComunicazioneAziendale getById(Long id) throws MyEntityNotFoundException {
         return comunicazioneAziendaleRepository
@@ -32,8 +36,15 @@ public class ComunicazioneAziendaleService {
     }
 
     public EntityIdResponse createComunicazioneAziendale(Long idDipendente, ComunicazioneAziendaleRequest request) {
-        ComunicazioneAziendale comunicazioneAziendale = comunicazioneAziendaleMapper.toEntity(idDipendente, request);
-        return new EntityIdResponse(comunicazioneAziendaleRepository.save(comunicazioneAziendale).getId());
+        ComunicazioneAziendale comunicazioneAziendale = comunicazioneAziendaleRepository.save(comunicazioneAziendaleMapper.toEntity(idDipendente, request));
+        comunicazioneProducer.sendConfermaComunicazione(ComunicazioneConfirmation
+                .builder()
+                        .id(comunicazioneAziendale.getId())
+                        .testo(comunicazioneAziendale.getTesto())
+                        .allegatoUrl(comunicazioneAziendale.getAllegato_url())
+                        .idDipendente(comunicazioneAziendale.getDipendenteId())
+                .build());
+        return new EntityIdResponse(comunicazioneAziendale.getId());
     }
 
     public EntityIdResponse updateComunicazioneAziendale(Long id, UpdateComunicazioneAziendaleRequest response) {

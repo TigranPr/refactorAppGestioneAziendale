@@ -2,7 +2,6 @@ package com.gruppo3.gestioneComunity.services;
 
 import com.gruppo3.gestioneComunity.dto.requests.LikeRequest;
 import com.gruppo3.gestioneComunity.dto.response.LikeResponse;
-import com.gruppo3.gestioneComunity.dto.response.UtenteResponse;
 import com.gruppo3.gestioneComunity.entity.Like;
 import com.gruppo3.gestioneComunity.entity.News;
 import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
@@ -30,14 +29,14 @@ public class LikeService {
         var dipendente = utenteClient.getUtenteById(request.IdDipendente());
 
         // Verifico se ci sta il duplicato del like
-        if (likeRepository.existsByNewsAndDipendente(news, dipendente)) {
+        if (likeRepository.existsByNewsAndIdDipendente(news, utenteClient.getUtenteById(request.IdDipendente()).id())) {
             throw new IllegalArgumentException(
                     "Il dipendente con ID " + dipendente + " ha già messo like alla news con ID " + news.getId()
             );
         }
 
         // Creazione del like
-        Like like = likeMapper.toEntity(news, dipendente);
+        Like like = likeMapper.toEntity(request);
         likeRepository.save(like);
 
         // Ritorna la risposta del Like creato
