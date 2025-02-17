@@ -2,6 +2,7 @@ package com.gruppo3.gestioneComunity.mappers;
 
 import com.gruppo3.gestioneComunity.dto.requests.CreateNewsRequest;
 import com.gruppo3.gestioneComunity.entity.News;
+import com.gruppo3.gestioneComunity.exceptions.MyEntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

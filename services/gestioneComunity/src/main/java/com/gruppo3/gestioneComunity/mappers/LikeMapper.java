@@ -3,6 +3,7 @@ package com.gruppo3.gestioneComunity.mappers;
 import com.gruppo3.gestioneComunity.dto.response.LikeResponse;
 import com.gruppo3.gestioneComunity.entity.Like;
 import com.gruppo3.gestioneComunity.entity.News;
+import com.gruppo3.gestioneComunity.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ public class LikeMapper {
     private Long dipendenteService;
 
     @Autowired
-    private Long newsService;
+    private NewsService newsService;
 
     public Like toEntity(News news, Long dipendente) {
         return Like.builder()
