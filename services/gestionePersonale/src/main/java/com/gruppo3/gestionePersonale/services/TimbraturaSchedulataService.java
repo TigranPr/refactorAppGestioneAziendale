@@ -30,12 +30,15 @@ public class TimbraturaSchedulataService implements Job {
     private JavaMailSender javaMailSender;
 
     public void timbratureGiornaliereScheduler() throws SchedulerException {
-        JobDetail jobDetail = JobBuilder.newJob(TimbraturaSchedulataService.class)
-                .withIdentity("timbrature giornaliere", "emailJobs")
-                .storeDurably()
-                .build();
-        Trigger trigger = buildJobTrigger(jobDetail);
-        scheduler.scheduleJob(jobDetail, trigger);
+        JobKey jobKey = new JobKey("timbrature giornaliere", "emailJobs");
+        if (!scheduler.checkExists(jobKey)) {
+            JobDetail jobDetail = JobBuilder.newJob(TimbraturaSchedulataService.class)
+                    .withIdentity("timbrature giornaliere", "emailJobs")
+                    .storeDurably()
+                    .build();
+            Trigger trigger = buildJobTrigger(jobDetail);
+            scheduler.scheduleJob(jobDetail, trigger);
+        }
     }
 
     private Trigger buildJobTrigger(JobDetail jobDetail) {
