@@ -3,6 +3,7 @@ package com.gruppo3.gestionePersonale.services;
 import com.gruppo3.gestionePersonale.dto.EntityIdResponse;
 import com.gruppo3.gestionePersonale.dto.TimbraturaRequest;
 import com.gruppo3.gestionePersonale.dto.TimbraturaSchedulataRequest;
+import com.gruppo3.gestionePersonale.entity.Timbratura;
 import com.gruppo3.gestionePersonale.entity.TimbraturaSchedulata;
 import com.gruppo3.gestionePersonale.exceptions.MyEntityNotFoundException;
 import com.gruppo3.gestionePersonale.repository.TimbraturaSchedulataRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class TimbraturaSchedulataService implements Job {
@@ -27,69 +29,51 @@ public class TimbraturaSchedulataService implements Job {
     @Autowired
     private UtenteClient utenteClient;
 
-    public EntityIdResponse createTimbraturaScheduled(TimbraturaSchedulataRequest request) throws MyEntityNotFoundException, SchedulingException, SchedulerException {
-        var utente = utenteClient.getUtenteById(request.dipendenteId());
-        TimbraturaSchedulata timbraturaScheduled = TimbraturaSchedulata.builder()
-                .ingresso(request.ingresso())
-                .uscita(request.uscita())
-                .inizioPausaPranzo(request.inizioPausaPranzo())
-                .finePausa(request.finePausa())
-                .dipendenteId(request.dipendenteId())
+    public void timbratureGiornaliereScheduler() throws SchedulerException {
+        JobDetail jobDetail = JobBuilder.newJob(TimbraturaSchedulataService.class)
+                .withIdentity("timbrature giornaliere", "emailJobs")
+                .storeDurably()
                 .build();
-        timbraturaSchedulataRepository.save(timbraturaScheduled);
-        JobDetail jobDetails = buildJobDetail(timbraturaScheduled);
-        Trigger trigger = buildJobTrigger(jobDetails, convertToDate(timbraturaScheduled.getPublishTime()));
-        scheduler.scheduleJob(jobDetails, trigger);
-        return EntityIdResponse.builder().id(timbraturaScheduled.getId()).build();
+        Trigger trigger = buildJobTrigger(jobDetail);
+        scheduler.scheduleJob(jobDetail, trigger);
     }
 
-    private Trigger buildJobTrigger(JobDetail jobDetail, Date publishTime) {
+    private Trigger buildJobTrigger(JobDetail jobDetail) {
         return TriggerBuilder.newTrigger()
                 .forJob(jobDetail)
-                .startAt(publishTime)
-                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
-                        .withIntervalInHours(24)
-                        .repeatForever())
+                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(18, 5))
                 .build();
-    }
-
-    private JobDetail buildJobDetail(TimbraturaSchedulata timbraturaSchedulata) {
-        JobDataMap jobDataMap = new JobDataMap();
-        jobDataMap.put("id", timbraturaSchedulata.getId());
-        jobDataMap.put("entityData", timbraturaSchedulata);
-        return JobBuilder.newJob(TimbraturaSchedulataService.class)
-                .withIdentity(String.valueOf(timbraturaSchedulata.getId()), "comunicazioni")
-                .storeDurably()
-                .setJobData(jobDataMap)
-                .build();
-    }
-
-    private Date convertToDate(LocalDateTime dateTime) {
-        return Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        JobDataMap jobDataMap = context.getMergedJobDataMap();
-        Long scheduledId = jobDataMap.getLong("id");
         try {
-            TimbraturaSchedulata timbraturaSchedulata = timbraturaSchedulataRepository.findById(scheduledId)
-                    .orElseThrow(() -> new JobExecutionException("Comunicazione non trovata"));
-
-            Long idUtente = timbraturaSchedulata.getId();
-            var utente = utenteClient.getUtenteById(idUtente);
-
-            TimbraturaRequest request = new TimbraturaRequest(
-                    timbraturaSchedulata.getIngresso(),
-                    timbraturaSchedulata.getUscita(),
-                    timbraturaSchedulata.getInizioPausaPranzo(),
-                    timbraturaSchedulata.getFinePausa(),
-                    idUtente);
-            timbraturaService.createTimbratura(request);
-
-            timbraturaSchedulataRepository.deleteById(scheduledId);
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime startOfDay = now.toLocalDate().atStartOfDay();
+            LocalDateTime endOfDay = now.toLocalDate().atTime(18, 0, 0);
+            List<Timbratura> timbrature = timbraturaService.getTimbratureGiornaliere(startOfDay, endOfDay);
+            if (timbrature.isEmpty()) {
+                return;
+            }
+            String csvContent = generateCSV(timbrature); // Genera il CSV
+            sendEmailWithCSV(csvContent); // Invia l'email con il CSV in allegato
         } catch (Exception e) {
-            throw new JobExecutionException("Errore durante l'esecuzione della comunicazione", e);
+            throw new JobExecutionException("Errore durante la generazione del riepilogo delle timbrature", e);
         }
+    }
+
+    public String generateCSV(List<Timbratura> timbrature) {
+        StringBuilder csvBuilder = new StringBuilder();
+        csvBuilder.append("ID, DipendenteID, Ingresso, Uscita, Inizio Pausa, Fine Pausa\n");
+        for (Timbratura t : timbrature) {
+            csvBuilder.append(t.getId()).append(",")
+                    .append(t.getDipendenteId()).append(",")
+                    .append(t.getIngresso()).append(",")
+                    .append(t.getUscita()).append(",")
+                    .append(t.getInizioPausaPranzo()).append(",")
+                    .append(t.getFinePausa())
+                    .append("\n");
+        }
+        return csvBuilder.toString();
     }
 }

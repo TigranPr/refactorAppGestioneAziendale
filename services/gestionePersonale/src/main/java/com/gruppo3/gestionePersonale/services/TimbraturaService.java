@@ -4,11 +4,13 @@ import com.gruppo3.gestionePersonale.dto.EntityIdResponse;
 import com.gruppo3.gestionePersonale.dto.TimbraturaRequest;
 import com.gruppo3.gestionePersonale.entity.Timbratura;
 import com.gruppo3.gestionePersonale.exceptions.MyEntityNotFoundException;
+import com.gruppo3.gestionePersonale.exceptions.MyIllegalException;
 import com.gruppo3.gestionePersonale.mappers.TimbraturaMapper;
 import com.gruppo3.gestionePersonale.repository.TimbraturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,5 +44,17 @@ public class TimbraturaService {
             timbratura.setFinePausa(request.finePausa());
         if (request.uscita() != null && timbratura.getUscita() == null) timbratura.setUscita(request.uscita());
         return timbraturaRepository.save(timbratura);
+    }
+
+    public List<Timbratura> getTimbratureGiornaliere(LocalDateTime startOfDay, LocalDateTime endOfDay) {
+        try {
+            List<Timbratura> timbrature = timbraturaRepository.findTimbratureByDateRange(startOfDay, endOfDay);
+            if (timbrature.isEmpty()) {
+                System.out.println("Nessuna timbratura trovata per la giornata");
+            }
+            return timbrature;
+        } catch (Exception e) {
+            throw new MyIllegalException("Errore durante il recupero delle timbrature giornaliere: " + e);
+        }
     }
 }
