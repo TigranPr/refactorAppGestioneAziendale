@@ -22,7 +22,17 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring.json.type.mapping: gestionePersonale:com.gruppo3.gestionePersonale.kafka.ComunicazioneConfirmation
-    
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: athleticusciv@gmail.com
+    password: jyim ovcr bjyz ojuu
+    protocol: smtp
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+    debug: true
 server:
   port: 8052
 
