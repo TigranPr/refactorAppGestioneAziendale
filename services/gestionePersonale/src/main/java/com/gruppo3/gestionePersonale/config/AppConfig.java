@@ -1,7 +1,5 @@
 package com.gruppo3.gestionePersonale.config;
 
-import com.gruppo3.gestionePersonale.services.UtenteClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,4 +32,5 @@ public class AppConfig {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.debug", "true");
         return mailSender;
+    }
 }

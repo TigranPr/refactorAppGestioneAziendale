@@ -2,6 +2,7 @@ package com.gruppo3.gestionePersonale.services;
 
 import com.gruppo3.gestionePersonale.entity.Timbratura;
 import com.gruppo3.gestionePersonale.repository.TimbraturaSchedulataRepository;
+import jakarta.annotation.PostConstruct;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.quartz.*;
@@ -40,7 +41,7 @@ public class TimbraturaSchedulataService implements Job {
     private Trigger buildJobTrigger(JobDetail jobDetail) {
         return TriggerBuilder.newTrigger()
                 .forJob(jobDetail)
-                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(18, 5))
+                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(14, 52))
                 .build();
     }
 
@@ -91,5 +92,10 @@ public class TimbraturaSchedulataService implements Job {
         } catch (MailException | IOException | MessagingException e) {
             System.err.println("Errore durante l'invio dell'email: " + e.getMessage());
         }
+    }
+
+    @PostConstruct
+    public void init() throws SchedulerException {
+        timbratureGiornaliereScheduler();
     }
 }
