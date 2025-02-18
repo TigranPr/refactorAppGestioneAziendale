@@ -44,7 +44,7 @@ public class TimbraturaSchedulataService implements Job {
     private Trigger buildJobTrigger(JobDetail jobDetail) {
         return TriggerBuilder.newTrigger()
                 .forJob(jobDetail)
-                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(14, 52))
+                .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(18, 5))
                 .build();
     }
 
