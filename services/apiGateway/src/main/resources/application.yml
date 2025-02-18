@@ -76,3 +76,7 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+jwt:
+  secret: "fabiobanx2settimane"
+  expiration: 3600000  # 1 ora
