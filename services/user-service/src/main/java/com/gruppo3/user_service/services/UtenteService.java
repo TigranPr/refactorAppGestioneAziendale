@@ -62,4 +62,13 @@ public class UtenteService {
         utenteRepository.deleteById(id);
     }
 
+    public Utente getByRegistrationToken(String token) {
+        return utenteRepository
+                .findByRegistrationToken(token)
+                .orElseThrow(() -> new MyEntityNotFoundException("utente con token " + token + " non trovato"));
+    }
+
+    public void insertUtente(Utente utente) {
+        utenteRepository.save(utente);
+    }
 }

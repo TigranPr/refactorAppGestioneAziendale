@@ -40,6 +40,8 @@ public class Utente {
     private String avatar;
     @Column(nullable = false)
     private Ruolo ruolo;
+    @Column(name = "token_di_registrazione")
+    private String registrationToken;
     @ManyToOne(optional = false)
     @JoinColumn(name = "comune_di_nascita", referencedColumnName = "nome")
     private Comune comune;
