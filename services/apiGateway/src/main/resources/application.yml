@@ -78,5 +78,5 @@ management:
       probability: 1.0
 
 jwt:
-  secret: "fabiobanx2settimane"
+  secret: "2A7D9F8B1C3E4F6A5B7D8C9E0F1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9"
   expiration: 3600000  # 1 ora

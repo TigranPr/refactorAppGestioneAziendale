@@ -2,22 +2,26 @@ package com.gruppo3.apiGateway.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .authorizeExchange(exchenge -> exchenge
-                        .pathMatchers("/api/auth/**") /*endpoint autenticazione*/
-                        .permitAll()
-                        .anyExchange()
-                        .authenticated()
-                )
-                .oauth2ResourceServer(oauth2 ->oauth2.jwt()); //todo filtro piu tardi.
+                .authorizeExchange(exchange -> exchange
+                        .pathMatchers("/utenti/api/auth/**").permitAll()
+                        .anyExchange().authenticated())
+                .addFilterBefore(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION);
         return http.build();
     }
 }
