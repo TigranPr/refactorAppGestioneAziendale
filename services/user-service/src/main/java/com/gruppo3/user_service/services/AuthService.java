@@ -2,6 +2,8 @@ package com.gruppo3.user_service.services;
 
 import com.gruppo3.user_service.dto.request.LoginRequest;
 import com.gruppo3.user_service.dto.request.UtenteRequest;
+import com.gruppo3.user_service.dto.response.AuthenticationResponse;
+import com.gruppo3.user_service.dto.response.GenericResponse;
 import com.gruppo3.user_service.dto.response.TokenResponse;
 import com.gruppo3.user_service.entity.Utente;
 import com.gruppo3.user_service.enums.Ruolo;
@@ -9,6 +11,8 @@ import com.gruppo3.user_service.exception.MyEntityNotFoundException;
 import com.gruppo3.user_service.repository.UtenteRepository;
 import com.gruppo3.user_service.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ public class AuthService {
     @Autowired
     private UtenteRepository utenteRepository;
     @Autowired
+    private UtenteService utenteService;
+    @Autowired
     private JwtUtil jwtUtil;
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -25,6 +31,8 @@ public class AuthService {
     private ComuneService comuneService;
     @Autowired
     private PosizioneLavorativaService posizioneLavorativaService;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     public TokenResponse register(UtenteRequest registerRequest) {
         if (utenteRepository.existsByEmail(registerRequest.email())) {
@@ -48,11 +56,18 @@ public class AuthService {
                 .telefono(registerRequest.telefono())
                 .avatar(registerRequest.avatar())
                 .comune(comuneService.getById(registerRequest.comune()))
-                .ruolo(ruolo)
+                .ruolo(Ruolo.DA_CONFERMARE)
                 .posizioneLavorativa(posizioneLavorativaService.getById(registerRequest.idPosizioneLavorativa()))
                 .build();
-        utente = utenteRepository.save(utente);
         String token = jwtUtil.generateToken(utente.getEmail());
+        utente.setRegistrationToken(token);
+        utenteRepository.save(utente);
+        String mailConferma = "http://localhost:8222/utenti/api/auth/conferma/" + utente.getRegistrationToken();
+        javaMailSender.send(createConfirmationEmail(utente.getEmail(), mailConferma));
+        AuthenticationResponse
+                .builder()
+                .token(token)
+                .build();
         return new TokenResponse(token);
     }
 
@@ -66,4 +81,26 @@ public class AuthService {
         String token = jwtUtil.generateToken(utente.getEmail());
         return new TokenResponse(token);
     }
+
+    private SimpleMailMessage createConfirmationEmail(String email, String confirmationUrl) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email); // a chi mando la mail
+        message.setReplyTo("athleticusciv@gmail.com"); // a chi rispondo se faccio "rispondi"
+        message.setFrom("athleticusciv@gmail.com"); // da chi viene la mail
+        message.setSubject("CONFERMA REGISTRAZIONE, SEMPRE FORZA MAGGGICA");
+        message.setText("Ciao lupacchiotto, clicca qui per essere un vero tifoso DA MAGGGICAAA " + confirmationUrl);
+        return message;
+    }
+
+    public GenericResponse confirmRegistration(String token) {
+        Utente utente = utenteService.getByRegistrationToken(token);
+        utente.setRuolo(Ruolo.UTENTE);
+        utenteService.insertUtente(utente);
+        return GenericResponse
+                .builder()
+                .message("Account verificato con successo!")
+                .build();
+    }
+
+
 }
