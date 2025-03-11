@@ -7,7 +7,7 @@
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
         h1, h2, h3 { color: #333; }
-        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; white-space: pre-wrap; }
         code { font-family: monospace; color: #d63384; }
     </style>
 </head>
