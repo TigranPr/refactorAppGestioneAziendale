@@ -45,11 +45,20 @@
         <li>MongoDB, PostgreSQL, MySQL</li>
     </ul>
 
-    <h2>Avvio del Progetto</h2>
-    <pre><code>docker-compose up -d</code></pre>
+    <h2>Installazione</h2>
+    <p>Per eseguire il progetto in locale, segui questi passi:</p>
+    <pre><code>git clone https://github.com/tuo-username/tuo-repo.git
+cd tuo-repo
+docker-compose up -d</code></pre>
     <p>Assicurati di avere Docker e Kubernetes configurati correttamente.</p>
 
-    <h2>Conclusione</h2>
-    <p>Questo progetto dimostra l'efficacia dei microservizi nella gestione aziendale, garantendo scalabilità e sicurezza.</p>
+    <h2>Come Contribuire</h2>
+    <p>Se vuoi contribuire al progetto, segui questi passi:</p>
+    <ul>
+        <li>Forka il repository</li>
+        <li>Crea un nuovo branch</li>
+        <li>Fai le tue modifiche e crea un commit</li>
+        <li>Invia una pull request</li>
+    </ul>
 </body>
 </html>
