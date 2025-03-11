@@ -29,6 +29,6 @@ La sicurezza è gestita con **Spring Boot Security** e **JWT**, centralizzata ne
 Per eseguire il progetto in locale, segui questi passi:  
 
 ```sh
-git clone https://github.com/tuo-username/tuo-repo.git
+git clone [https://github.com/tuo-username/tuo-repo.git](https://github.com/TigranPr/refactorAppGestioneAziendale.git)
 cd tuo-repo
 docker-compose up -d
